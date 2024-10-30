@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Section</title>
+    <script>
+        window.onload = function() {
+            location.reload();
+        }
+    </script>
+</head>
+<body>
+    <h1>Quiz Section</h1>
+    <form action="/submit-quiz" method="post">
+        {{range $index, $question := .}}
+        <div>
+            <p>{{$index}}. {{$question.question}}</p>
+            {{range $choiceIndex, $choice := $question.choices}}
+            <input type="radio" id="question{{$index}}_choice{{$choiceIndex}}" name="question{{$index}}" value="{{$choice}}">
+            <label for="question{{$index}}_choice{{$choiceIndex}}">{{$choice}}</label><br>
+            {{end}}
+        </div>
+        {{end}}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
